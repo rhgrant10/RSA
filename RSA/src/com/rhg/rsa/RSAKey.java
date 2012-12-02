@@ -10,7 +10,7 @@ import java.util.Random;
  * @author Rob
  * @version 06/01/2010
  */
-public abstract class RSAKey implements BigIntegerInterface, RSABaseInterface
+public abstract class RSAKey implements RSAConstants, RSABaseInterface
 {
     /** The modulus. */
     private BigInteger n;
