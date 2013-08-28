@@ -50,7 +50,8 @@ public class RSAPublicKey extends RSAKey
     public boolean use(String source, String destination) {
         byte[] sourceBytes = getBytes(source);
         if (isNull(sourceBytes)) {
-            return false;
+        	System.err.println(String.format("%s contained nothing.", source));
+        	return false;
         }
         
         int k = getModulusByteSize();
@@ -74,7 +75,9 @@ public class RSAPublicKey extends RSAKey
                 out.write(C);
             }
             out.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+        	String errMsg = "An exception occured!%n%s%n%s%n%s";
+        	System.err.println(String.format(errMsg, e.getClass(), e.getMessage(), e.getStackTrace()));
             return false;
         }
         

@@ -70,7 +70,6 @@ public class RSACompleteKey extends RSAPrivateKey
     
     /** Performs the classical RSA computation. */
     protected BigInteger decrypt(BigInteger c) {
-        System.out.println("YES!");
         BigInteger m1, m2, dm, h;
         m1 = c.modPow(getCRTExpOne(), getPrimeOne());
         m2 = c.modPow(getCRTExpTwo(), getPrimeTwo());

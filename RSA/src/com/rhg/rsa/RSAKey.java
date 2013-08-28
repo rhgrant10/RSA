@@ -30,9 +30,13 @@ public abstract class RSAKey implements RSAConstants, RSABaseInterface
     /** Returns the contents of a file as a byte array. */
     protected byte[] getBytes(String fileName) {
         File fIn = new File(fileName);
+        if (!fIn.canRead()) {
+        	System.err.println("Can't read " + fileName);
+            return null;
+        }
+        
         FileInputStream in = null;
         byte[] bytes = null;
-        
         try {
             in = new FileInputStream(fIn);
 
@@ -50,12 +54,10 @@ public abstract class RSAKey implements RSAConstants, RSABaseInterface
                 offset += numRead;
             }
         } catch (IOException e) {
-            return null;
         } finally {
             try {
-                in.close();
+                if (in != null) in.close();
             } catch (IOException e) {
-                return null;
             }
         }
 
